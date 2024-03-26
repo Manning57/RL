@@ -20,7 +20,7 @@ namespace RL
         public String quickChat()
         {
             Helper h = new Helper();
-            String s = "t" + h.randomlySelect(st) + "!{ENTER}";
+            String s = "t" + h.randomlySelect(st, 0) + "!{ENTER}";
 
             return s;
         }

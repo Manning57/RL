@@ -13,7 +13,11 @@ namespace RL
             "ass",
             "cock",
             "balls",
-            "toes"
+            "toes",
+            "cheeks",
+            "holes",
+            "special place",
+            "mouth"
         };
 
         public string[] animals = {
@@ -24,12 +28,22 @@ namespace RL
             "donkey"
         };
 
-        public string[] adjectives = {
+        public string[] iOrYouStates = {
+            "throw up",
+            "splooge",
+            "cry",
+            "give up",
+            "uninstall",
+            "apologize"
+        };
+
+        public string[] iOrYouStates2 = {
             "unconscious",
             "in disbelief",
             "in shambles",
             "in love",
-            "paralized"
+            "paralized",
+            "sorry"
         };
 
         public string[] verbs = {
@@ -37,7 +51,9 @@ namespace RL
             "fiddle",
             "torment",
             "attack",
-            "stomp"
+            "stomp",
+            "shit on",
+            "sit and spin on"
         };
 
         public string[] adverbs = {
@@ -53,15 +69,44 @@ namespace RL
             "Beef is"
         };
 
+        public string[] iOrYou = {
+            "I",
+            "you"
+        };
+
+        public string[] iOrYou2 = {
+            "i'm",
+            "you're"
+        };
+
+        public string vary()
+        {
+            Helper h = new Helper();
+            var x = h.randomFromRange(0, 2);
+            string s = "";
+            if (x == 0)
+            {
+                s =" till " + h.randomlySelect(iOrYou, 0) +
+                " " + h.randomlySelect(iOrYouStates, 0);
+            } 
+            else
+            {
+                s =" till " + h.randomlySelect(iOrYou2, 0) +
+                " " + h.randomlySelect(iOrYouStates2, 0);
+            }
+            return s;
+        }
+
         public String formSentence()
         {
             Helper h = new Helper();
-            String s = "t" + h.randomlySelect(aggressor) +
-                " gonna " + h.randomlySelect(adverbs) +
-                " " + h.randomlySelect(verbs) +
-                " your " + h.randomlySelect(nouns) +
+
+            String s = "t" + h.randomlySelect(aggressor, 0) +
+                " gonna " + h.randomlySelect(adverbs, 1) +
+                h.randomlySelect(verbs, 0) +
+                " your " + h.randomlySelect(nouns, 0) +
                 //" like a " + h.randomlySelect(animals) +
-                " till you're " + h.randomlySelect(adjectives) +
+                vary() + 
                 "!{ENTER}";
 
             return s;
