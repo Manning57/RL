@@ -79,6 +79,15 @@ namespace RL
             "you're"
         };
 
+        public string[] endings = {
+            ", bitch",
+            ", weeb",
+            ", bub",
+            ", bud",
+            ", buddy",
+            ", chump"
+        };
+
         public string vary()
         {
             Helper h = new Helper();
@@ -97,16 +106,18 @@ namespace RL
             return s;
         }
 
+
         public String formSentence()
         {
             Helper h = new Helper();
 
             String s = "t" + h.randomlySelect(aggressor, 0) +
-                " gonna " + h.randomlySelect(adverbs, h.randomFromRange(0,2)) +
+                " gonna " + h.randomlySelect(adverbs, 1) +
                 h.randomlySelect(verbs, 0) +
                 " your " + h.randomlySelect(nouns, 0) +
                 //" like a " + h.randomlySelect(animals) +
                 vary() + 
+                h.randomlySelect(endings, 1) +
                 "!{ENTER}";
 
             return s;

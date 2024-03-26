@@ -13,12 +13,14 @@ namespace RL
         {
             if (optional == 1)
             {
-                return "";
-            } else 
-            {
-                var choice = random.Next(0, stringArray.Length);
-                return stringArray[choice];
+                var o = random.Next(0, 2);
+                if (o == 0)
+                {
+                    return "";
+                }
             }
+            var choice = random.Next(0, stringArray.Length);
+            return stringArray[choice];
         }
         public int randomFromRange(int start, int end)
         {
