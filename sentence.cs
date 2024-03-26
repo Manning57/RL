@@ -6,22 +6,13 @@ using System.Threading.Tasks;
 
 namespace RL
 {
-    internal class sentence
+    internal class Sentence
     {
-        Random random = new Random();
-
-        public string[] st = {
-            "You fucking suck!",
-            "Eat my ass!",
-            "I'm Huge!",
-            "Go Beef Go!"
-        };
-
         public string[] nouns = {
             "face",
             "ass",
             "cock",
-            "belly",
+            "balls",
             "toes"
         };
 
@@ -62,20 +53,15 @@ namespace RL
             "Beef is"
         };
 
-        public String randomlySelect(string[] stringArray)
-        {
-            var choice = random.Next(0, stringArray.Length);
-            return stringArray[choice];
-        }
-
         public String formSentence()
         {
-            String s = "t" + randomlySelect(aggressor) +
-                " gonna " + randomlySelect(adverbs) +
-                " " + randomlySelect(verbs) +
-                " your " + randomlySelect(nouns) +
-                " like a " + randomlySelect(animals) +
-                " till you're " + randomlySelect(adjectives) +
+            Helper h = new Helper();
+            String s = "t" + h.randomlySelect(aggressor) +
+                " gonna " + h.randomlySelect(adverbs) +
+                " " + h.randomlySelect(verbs) +
+                " your " + h.randomlySelect(nouns) +
+                //" like a " + h.randomlySelect(animals) +
+                " till you're " + h.randomlySelect(adjectives) +
                 "!{ENTER}";
 
             return s;
