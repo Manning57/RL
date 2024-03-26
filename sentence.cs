@@ -57,11 +57,11 @@ namespace RL
         };
 
         public string[] adverbs = {
-            "gently",
-            "aggressively",
-            "viciously",
-            "completely",
-            "timidly"
+            "gently ",
+            "aggressively ",
+            "viciously ",
+            "completely ",
+            "timidly "
         };
 
         public string[] aggressor = {
@@ -102,7 +102,7 @@ namespace RL
             Helper h = new Helper();
 
             String s = "t" + h.randomlySelect(aggressor, 0) +
-                " gonna " + h.randomlySelect(adverbs, 1) +
+                " gonna " + h.randomlySelect(adverbs, h.randomFromRange(0,2)) +
                 h.randomlySelect(verbs, 0) +
                 " your " + h.randomlySelect(nouns, 0) +
                 //" like a " + h.randomlySelect(animals) +
