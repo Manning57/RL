@@ -11,7 +11,7 @@ namespace RL
 {
     internal class GPT
     {
-
+        const string friend = "Beef";
         public async Task<string> chat()
         {
             Helper h = new Helper();
@@ -21,7 +21,7 @@ namespace RL
             OpenAIAPI api = new OpenAIAPI(apiKey);
             var chat = api.Chat.CreateConversation();
             chat.Model = Model.GPT4;
-            //chat.RequestParameters.Temperature = 0;
+            //chat.RequestParameters.Temperature = 1;
 
             /// give instruction as System
             chat.AppendSystemMessage(
@@ -78,6 +78,7 @@ namespace RL
             "he mentions how horny he is right now. ",
             "he mentions how he eats his own cum. ",
             "he mentions how he is rubbing one out. ",
+            "he mentions how small his cock is. ",
             "he actually compliments the other person's penis. ",
             "he actually compliments the other person's testicles. ",
             "he mentions how he is huge. he says im huge. "
@@ -85,10 +86,11 @@ namespace RL
 
         string[] beefModifier =
         {
-            "he refers to himself in the 3rd person as Beef. ",
-            "he includes his friend named Beef on his side, and goes against the other person. ",
-            "he includes his friend named Beef. ",
-            "he double teams with a man named Beef. "
+            string.Format("he refers to himself in the 3rd person as {0}. ", friend),
+            string.Format("he includes his friend named {0} on his side, and goes against the other person. ", friend),
+            string.Format("he includes his friend named {0}. ", friend),
+            string.Format("he double teams with a man named {0}. ", friend),
+            string.Format("he asks {0} for confirmation. ", friend)
         };
 
         string[] questions =
