@@ -16,7 +16,6 @@ namespace RL
             "toes",
             "cheeks",
             "holes",
-            "special place",
             "mouth"
         };
 
@@ -61,7 +60,8 @@ namespace RL
             "aggressively ",
             "viciously ",
             "completely ",
-            "timidly "
+            "timidly ",
+            "kind of just "
         };
 
         public string[] aggressor = {
