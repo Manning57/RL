@@ -67,12 +67,17 @@ namespace RL
             "He desperately wants to be cucked sexually by the other person. ",
             "He desperately wants to cuck the other person. ",
             "he randomly screams in all caps. ",
-            "he threatens you sexually. "
+            "he threatens you sexually. ",
+            "he incorporates sexual desires into his conversation. ",
+            "he mentions his Subway franchise. ",
+            "he mentions how he came in his pants just now. ",
+            "he mentions how he splooged in his pants just now. ",
+            "he mentions how he shat in his pants just now. "
         };
 
         string[] questions =
         {
-            "give me some trash talk"
+            "give me some trash talk. "
         };
     }
 }
