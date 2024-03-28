@@ -23,12 +23,15 @@ namespace RL
             chat.Model = Model.GPT4;
             //chat.RequestParameters.Temperature = 1;
 
+            string selectedBasePrompt = h.randomlySelect(basePrompt, 0);
+            string selectedModifier = h.randomlySelect(modifiers, 0);
+            string selectedBeefModifier = h.randomlySelect(beefModifier, 0);
+
+            string instructions =
+                selectedBasePrompt + selectedModifier + selectedBeefModifier;
+
             /// give instruction as System
-            chat.AppendSystemMessage(
-                h.randomlySelect(basePrompt, 0) + 
-                h.randomlySelect(modifiers, 0) + 
-                h.randomlySelect(beefModifier, 1)
-            );
+            chat.AppendSystemMessage(instructions);
 
             // give a few examples as user and assistant
             //chat.AppendUserInput("give me an example of some trash talk in a multiplayer videogame");
@@ -36,13 +39,19 @@ namespace RL
             //chat.AppendUserInput("you just lost the game. How do you respond?");
             //chat.AppendExampleChatbotOutput("you must live a sad virgin life");
 
+            string question = h.randomlySelect(questions, 0);
             // now let's ask it a question
-            chat.AppendUserInput(h.randomlySelect(questions, 0));
+            chat.AppendUserInput(question);
             // and get the response
             string response = await chat.GetResponseFromChatbotAsync();
-            //Console.WriteLine(response);
 
-            if (response.Contains("Sorry, but I"))
+            if (settings.getDBStore())
+            {
+                h.store(selectedBasePrompt, selectedModifier, selectedBeefModifier, question, response);
+            }
+
+            //if chatGPT is unable to say something bad
+            if (response.Contains("Sorry, but I") || response.Contains("Try this instead"))
             {
                 return "tNeedless bureauracy!{ENTER}";
             }
@@ -65,7 +74,7 @@ namespace RL
 
         string[] modifiers =
         {
-            "He insults the other person's wieght. ",
+            "He insults the other person's weight. ",
             "He praises the other person's manhood, and afterwards degrades his own manhood. ",
             "He desperately wants to be cucked sexually by the other person. ",
             "He desperately wants to cuck the other person. ",
@@ -81,7 +90,11 @@ namespace RL
             "he mentions how small his cock is. ",
             "he actually compliments the other person's penis. ",
             "he actually compliments the other person's testicles. ",
-            "he mentions how he is huge. he says im huge. "
+            "he mentions how he is huge. he says im huge. ",
+            "he talks like shakespeare. ",
+            "he talks like he is irish. ",
+            "he talks like he is jamaican. ",
+            "he speaks with an intense lisp. "
         };
 
         string[] beefModifier =

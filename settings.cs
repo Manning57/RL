@@ -8,10 +8,15 @@ namespace RL
 {
     internal class settings
     {
-        private const string apiKey = "";
+        private const string apiKey = "<your api key here>";
+        const bool DBStore = false;
         public string getKey()
         {
             return apiKey;
+        }
+        public bool getDBStore()
+        {
+            return DBStore;
         }
     }
 }

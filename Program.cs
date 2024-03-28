@@ -11,7 +11,10 @@ var gpt = new GPT();
 
 var proc = Process.GetProcessesByName("RocketLeague").FirstOrDefault();
 if (proc != null && proc.MainWindowHandle != IntPtr.Zero)
+{
+    ShowWindow(proc.MainWindowHandle, 1);
     SetForegroundWindow(proc.MainWindowHandle);
+}
 
 //SendKeys.SendWait(s.formSentence());
 //SendKeys.SendWait(qc.quickChat());
@@ -20,5 +23,8 @@ SendKeys.SendWait(s);
 
 [DllImport("user32")]
 static extern bool SetForegroundWindow(IntPtr hwnd);
+[DllImport("user32")]
+static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
+
 
 
