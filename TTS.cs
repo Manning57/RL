@@ -38,7 +38,7 @@ namespace RL
             await api.TextToSpeech.SaveSpeechToFileAsync(request, "C:\\Users\\Lando\\Downloads\\st.mp3");
 
             using (var audioFile = new AudioFileReader("C:\\Users\\Lando\\Downloads\\st.mp3"))
-            using (var outputDevice = new WaveOutEvent() { DeviceNumber = 0 })
+            using (var outputDevice = new WaveOutEvent() { DeviceNumber = 1 })
             {
                 outputDevice.Init(audioFile);
                 outputDevice.Play();

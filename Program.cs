@@ -29,12 +29,6 @@ if (proc != null && proc.MainWindowHandle != IntPtr.Zero)
 string s = await gpt.chat();
 //SendKeys.SendWait(s);
 
-for (int n = -1; n < WaveOut.DeviceCount; n++)
-{
-    var caps = WaveOut.GetCapabilities(n);
-    Console.WriteLine($"{n}: {caps.ProductName}");
-}
-
 TTS tts = new TTS();
 await tts.textToSpeech(s);
 
