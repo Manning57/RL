@@ -37,18 +37,47 @@ namespace RL
             };
             await api.TextToSpeech.SaveSpeechToFileAsync(request, "C:\\Users\\Lando\\Downloads\\st.mp3");
 
-            using (var audioFile = new AudioFileReader("C:\\Users\\Lando\\Downloads\\st.mp3"))
-            using (var outputDevice = new WaveOutEvent() { DeviceNumber = 1 })
+            static async Task audio1()
             {
-                outputDevice.Init(audioFile);
-                outputDevice.Play();
-                while (outputDevice.PlaybackState == PlaybackState.Playing)
+                using (var audioFile = new AudioFileReader("C:\\Users\\Lando\\Downloads\\st.mp3"))
+                using (var outputDevice = new WaveOutEvent() { DeviceNumber = 1 })
                 {
-                    Thread.Sleep(1000);
+                    outputDevice.Init(audioFile);
+                    //outputDevice2.Init(audioFile);
+                    outputDevice.Play();
+                    //outputDevice2.Play();
+                    while (outputDevice.PlaybackState == PlaybackState.Playing)
+                    {
+                        Thread.Sleep(1000);
+                    }
+                    outputDevice.Dispose();
                 }
-                outputDevice.Dispose();
-                audioFile.Dispose();
             }
+
+            static async Task audio2()
+            {
+                using (var audioFile = new AudioFileReader("C:\\Users\\Lando\\Downloads\\st.mp3"))
+                using (var outputDevice2 = new WaveOutEvent() { DeviceNumber = 0 })
+
+                {
+                    outputDevice2.Init(audioFile);
+
+                    outputDevice2.Play();
+
+                    while (outputDevice2.PlaybackState == PlaybackState.Playing)
+                    {
+                        Thread.Sleep(1000);
+                    }
+                    outputDevice2.Dispose();
+                }
+            }
+
+            //audioFile.Dispose();
+
+            List<Task> tasks = new List<Task>();
+            tasks.Add(Task.Run(() => { audio1(); }));
+            tasks.Add(Task.Run(() => { audio2(); }));
+            Task.WaitAll(tasks.ToArray());
 
         }
     }

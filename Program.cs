@@ -17,7 +17,7 @@ using System.IO;
 //var gpt = new GPT();
 var gpt = new GPTfn();
 
-var proc = Process.GetProcessesByName("Notepad").FirstOrDefault();
+var proc = Process.GetProcessesByName("Fortnite").FirstOrDefault();
 if (proc != null && proc.MainWindowHandle != IntPtr.Zero)
 {
     ShowWindow(proc.MainWindowHandle, 1);
