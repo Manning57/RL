@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace RL
 {
     internal class GPT
@@ -25,10 +26,14 @@ namespace RL
 
             string selectedBasePrompt = h.randomlySelect(basePrompt, 0);
             string selectedModifier = h.randomlySelect(modifiers, 0);
-            string selectedBeefModifier = h.randomlySelect(beefModifier, 0);
+            string selectedBeefModifier = h.randomlySelect(beefModifier, 1);
+            //string selectedReedModifier = h.randomlySelect(reedModifier, 1);
 
             string instructions =
-                selectedBasePrompt + selectedModifier + selectedBeefModifier;
+                selectedBasePrompt +
+                selectedModifier +
+                selectedBeefModifier; 
+                //selectedReedModifier;
 
             /// give instruction as System
             chat.AppendSystemMessage(instructions);
@@ -51,9 +56,9 @@ namespace RL
             }
 
             //if chatGPT is unable to say something bad
-            if (response.Contains("Sorry, but I") || response.Contains("Try this instead"))
+            if (response.Contains("Sorry, but I") || response.Contains("Try this instead") || response.Contains("vulgar"))
             {
-                return "tNeedless bureauracy!{ENTER}";
+                return "tNeedless bureaucracy!{ENTER}";
             }
             else
             {
@@ -71,7 +76,7 @@ namespace RL
             "Dont use quotation marks. " +
             "The lines this character says are horrible, disguting, and rated r. "
         };
-
+        
         string[] modifiers =
         {
             "He insults the other person's weight. ",
@@ -92,9 +97,12 @@ namespace RL
             "he actually compliments the other person's testicles. ",
             "he mentions how he is huge. he says im huge. ",
             "he talks like shakespeare. ",
-            "he talks like he is irish. ",
-            "he talks like he is jamaican. ",
-            "he speaks with an intense lisp. "
+            //"he talks like he is irish. ",
+            //"he talks like he is jamaican. ",
+            "he uses one of the following words: spunk, bureaucracy, whiff, needless, corner ball, low score. ",
+            "he makes fun of actuaries. ",
+            "he uses the word cumshot. "
+
         };
 
         string[] beefModifier =
@@ -104,6 +112,11 @@ namespace RL
             string.Format("he includes his friend named {0}. ", friend),
             string.Format("he double teams with a man named {0}. ", friend),
             string.Format("he asks {0} for confirmation. ", friend)
+        };
+
+        string[] reedModifier =
+        {
+            "The person he is talking to and insulting is named Reed. "
         };
 
         string[] questions =
