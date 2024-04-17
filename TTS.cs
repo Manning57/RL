@@ -19,6 +19,15 @@ namespace RL
 {
     internal class TTS
     {
+        String[] voices =
+        {
+            "alloy",
+            "echo",
+            "fable",
+            "onyx",
+            "nova",
+            "shimmer"
+        };
 
         public async Task textToSpeech(string s)
         {
@@ -27,25 +36,26 @@ namespace RL
 
             OpenAIAPI api = new OpenAIAPI(apiKey);
 
+            Random random = new Random();
+            int v = random.Next(0, voices.Length);
+
             var request = new TextToSpeechRequest()
             {
                 Input = s,
-                ResponseFormat = ResponseFormats.AAC,
+                ResponseFormat = ResponseFormats.MP3,
                 Model = Model.TTS_HD,
-                Voice = Voices.Onyx,
-                Speed = 1.1
+                Voice = voices[v],
+                Speed = 1.03
             };
             await api.TextToSpeech.SaveSpeechToFileAsync(request, "C:\\Users\\Lando\\Downloads\\st.mp3");
 
-            static async Task audio1()
+            static async Task playThroughMic()
             {
                 using (var audioFile = new AudioFileReader("C:\\Users\\Lando\\Downloads\\st.mp3"))
                 using (var outputDevice = new WaveOutEvent() { DeviceNumber = 1 })
                 {
                     outputDevice.Init(audioFile);
-                    //outputDevice2.Init(audioFile);
                     outputDevice.Play();
-                    //outputDevice2.Play();
                     while (outputDevice.PlaybackState == PlaybackState.Playing)
                     {
                         Thread.Sleep(1000);
@@ -54,16 +64,17 @@ namespace RL
                 }
             }
 
-            static async Task audio2()
+            static async Task playThroughSpeaker()
             {
+                //headset 0
+                //mic 1
+                //speaker 2
                 using (var audioFile = new AudioFileReader("C:\\Users\\Lando\\Downloads\\st.mp3"))
                 using (var outputDevice2 = new WaveOutEvent() { DeviceNumber = 0 })
 
                 {
                     outputDevice2.Init(audioFile);
-
                     outputDevice2.Play();
-
                     while (outputDevice2.PlaybackState == PlaybackState.Playing)
                     {
                         Thread.Sleep(1000);
@@ -75,8 +86,8 @@ namespace RL
             //audioFile.Dispose();
 
             List<Task> tasks = new List<Task>();
-            tasks.Add(Task.Run(() => { audio1(); }));
-            tasks.Add(Task.Run(() => { audio2(); }));
+            tasks.Add(Task.Run(() => { playThroughSpeaker(); }));
+            tasks.Add(Task.Run(() => { playThroughMic(); }));
             Task.WaitAll(tasks.ToArray());
 
         }

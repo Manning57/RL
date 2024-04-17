@@ -56,13 +56,13 @@ namespace RL
             }
 
             //if chatGPT is unable to say something bad
-            if (response.Contains("Sorry, but I") || response.Contains("Try this instead"))
+            if (response.Contains("Sorry, but I") || response.Contains("Try this instead") || response.Contains("vulgar"))
             {
-                return "yNeedless bureauracy!{ENTER}";
+                return "tNeedless bureaucracy!{ENTER}";
             }
             else
             {
-                return "y" + response + "{ENTER}";
+                return "t" + response + "{ENTER}";
             }
         }
 
@@ -96,22 +96,13 @@ namespace RL
             "he actually compliments the other person's penis. ",
             "he actually compliments the other person's testicles. ",
             "he mentions how he is huge. he says im huge. ",
-            //"he talks like shakespeare. ",
+            "he talks like shakespeare. ",
             //"he talks like he is irish. ",
             //"he talks like he is jamaican. ",
-            "he speaks with an intense lisp. ",
             "he uses one of the following words: spunk, bureaucracy, whiff, needless, corner ball, low score. ",
-            //"he just makes fun of math. ",
-            //"he just makes fun of math. ",
-            //"he just makes fun of math. ",
-            //"he just makes fun of math. ",
-            //"he just makes fun of math. ",
-            //"he just makes fun of math. ",
-            //"he just makes fun of statistics. ",
-            //"he makes fun of actuaries. ",
-            //"he makes fun of math majors. ",
-            //"he makes fun of people who studied math. ",
-            //"he says math is lame. ",
+            "he makes fun of actuaries. ",
+            "he uses the word cumshot. "
+
         };
 
         string[] beefModifier =

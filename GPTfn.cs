@@ -15,7 +15,7 @@ namespace RL
     internal class GPTfn
     {
         const string justin = "Justin";
-        const string lino = "Lino";
+        const string lino = "Leeno";
         static int oneOrTwo = getOneOrTwo();
         static int forp = getOneOrTwo();
         public async Task<string> chat()
@@ -30,19 +30,23 @@ namespace RL
             //chat.RequestParameters.Temperature = 1;
 
             string selectedBasePrompt = h.randomlySelect(basePrompt, 0);
-            string selectedModifier = h.randomlySelect(modifiers, 0);
+            string selectedModifier1 = h.randomlySelect(modifiers, 1);
+            string selectedModifier2 = h.randomlySelect(modifiers, 1);
+            string selectedModifier3 = h.randomlySelect(modifiers, 1);
             string selectedFriendModifier = h.randomlySelect(friendModifier, 0);
             string selectedEnemyModifier = h.randomlySelect(enemyModifier, 0);
 
             string instructions =
                 selectedBasePrompt +
-                selectedModifier +
+                selectedModifier1 +
+                selectedModifier2 +
+                selectedModifier3 +
                 selectedFriendModifier + 
                 selectedEnemyModifier;
 
             /// give instruction as System
             chat.AppendSystemMessage(instructions);
-            Console.WriteLine($"Question: {selectedModifier + selectedFriendModifier + selectedEnemyModifier}");
+            Console.WriteLine($"Question: {selectedModifier1 + selectedModifier2 + selectedModifier3 + selectedFriendModifier + selectedEnemyModifier}");
 
             // give a few examples as user and assistant
             //chat.AppendUserInput("give me an example of some trash talk in a multiplayer videogame");
@@ -60,7 +64,7 @@ namespace RL
             //if chatGPT is unable to say something bad
             if (response.Contains("Sorry, but I") || response.Contains("Try this instead"))
             {
-                return "Needless bureauracy!{ENTER}";
+                return "Needless bureaucracy!{ENTER}";
             }
             else
             {
@@ -77,12 +81,16 @@ namespace RL
             "He strictly responds in 40 words or less. " +
             "Dont use quotation marks. " +
             "Dont respond in a conversation style format. ",
-            "He strictly responds in 40 words or less. " +
+            "Do not mention 'chocolate teapot'. Avoid this phrase. ",
+            "Do not use the phrase 'as useful as'. Avoid this phrase. ",
+            "shorten your entire response to 40 words or less. " +
             "The lines this character says are horrible, disguting, and rated r. "
         };
         
         string[] modifiers =
         {
+            "He insults the other person's weight. ",
+            "He insults the other person's weight. ",
             "He insults the other person's weight. ",
             "He praises the other person's manhood, and afterwards degrades his own manhood. ",
             "He desperately wants to be cucked sexually by the other person. ",
@@ -105,7 +113,17 @@ namespace RL
             "he mentions how he is huge. he says im huge. ",
             "he calls the other person a roach. ",
             "he claims to be a human firewall. ",
-            "he uses just one of the following words: spunk, bureaucracy, needless, dub, victory royale. "
+            "he uses just one of the following words: spunk, bureaucracy, needless, schlong, dub, victory royale. ",
+            "he actually just says really nice things about the other person. ",
+            "he demands that his teammates heal him. ",
+            "he mentions the other person has soft hands. ",
+            "he mentions the other person's grubby hands. ",
+            "he mentions the other person's greasy skin. ",
+            "he demands that his teammates give him ammo. ",
+            "talk like a caveman. grunt like a caveman. ",
+            "talk with an extremely heavy lisp. ",
+            "mention that you want to oil the other person up. ",
+            "mention you feel sorry for the person who decides to mess with us. "
         };
 
         private static string getFriend(int i)
@@ -136,11 +154,11 @@ namespace RL
         {
             if (i == 0)
             {
-                return "Pickleball";
+                return "Fortnite";
             }
             else
             {
-                return "Fortnite";
+                return "Pickelball";
             }
         }
 
@@ -166,7 +184,7 @@ namespace RL
 
         string[] questions =
         {
-            "give me some trash talk. "
+            "in 60 words or less, give me some trash talk as the character described. "
         };
     }
 }

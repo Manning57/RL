@@ -14,10 +14,10 @@ using System.IO;
 
 //var s = new Sentence();
 //var qc = new QuickChat();
-//var gpt = new GPT();
-var gpt = new GPTfn();
+var gpt = new GPT();
+//var gpt = new GPTfn();
 
-var proc = Process.GetProcessesByName("Fortnite").FirstOrDefault();
+var proc = Process.GetProcessesByName("RocketLeague").FirstOrDefault();
 if (proc != null && proc.MainWindowHandle != IntPtr.Zero)
 {
     ShowWindow(proc.MainWindowHandle, 1);
@@ -27,10 +27,10 @@ if (proc != null && proc.MainWindowHandle != IntPtr.Zero)
 //SendKeys.SendWait(s.formSentence());
 //SendKeys.SendWait(qc.quickChat());
 string s = await gpt.chat();
-//SendKeys.SendWait(s);
+SendKeys.SendWait(s);
 
-TTS tts = new TTS();
-await tts.textToSpeech(s);
+//TTS tts = new TTS();
+//await tts.textToSpeech(s);
 
 [DllImport("user32")]
 static extern bool SetForegroundWindow(IntPtr hwnd);
